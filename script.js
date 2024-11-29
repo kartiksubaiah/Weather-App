@@ -1,4 +1,4 @@
-const apiUrl = "https://weather-app.vercel.app/api/weather"; // URL to the Vercel serverless function
+const apiUrl = "https://weatherapp-mauve-theta.vercel.app/api/weather"; // URL to the Vercel serverless function
 
 const search = document.querySelector(".search input");
 const searchBtn = document.querySelector(".search button");
