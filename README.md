@@ -1,7 +1,10 @@
 # Weather-App
+
+Demo - https://github.com/kartiksubaiah/Weather-App
 A simple app that shows the current weather conditions for the selected city.
 
 ## Table of contents
+
 - [Links](#links)
 - [Built with](#built-with)
 - [Author](#author)
@@ -9,8 +12,8 @@ A simple app that shows the current weather conditions for the selected city.
 
 ### Links
 
-- Solution URL: ()
-- Live Site URL: ()
+- Solution URL: (https://github.com/kartiksubaiah/Weather-App)
+- Live Site URL: (https://vercel.com/kartik-subaiahs-projects/weather_app)
 
 ### Built with
 
