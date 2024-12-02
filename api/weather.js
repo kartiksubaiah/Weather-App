@@ -1,6 +1,10 @@
 import fetch from "node-fetch"; // Import fetch for API requests
 
 export default async function handler(req, res) {
+  res.setHeader("Access-Control-Allow-Origin", "*"); // Allow requests from any origin
+  res.setHeader("Access-Control-Allow-Methods", "GET"); // Allow only GET requests
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type"); // Allow required headers
+
   const { location } = req.query; // Get the city name from query parameters
   const API_KEY = process.env.OPENWEATHER_API_KEY; // API Key from environment variables
 
