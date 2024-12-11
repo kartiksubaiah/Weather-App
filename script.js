@@ -10,21 +10,45 @@ async function checkWeather(city) {
 
   if (response.status == "404") {
     document.querySelector(".error").style.display = "block";
-    document.querySelector(".weather").style.display = "none";
+    document.querySelector(".container").style.display = "none";
   } else {
     let data = await response.json();
+
+    //Accessing the time given in UNIX format
+    let timezone = data.timezone;
+    let sunrise = data.sys.sunrise;
+    let sunset = data.sys.sunset;
+    //converting the time to milliseconds
+    let sunriseDate = new Date((sunrise + timezone) * 1000);
+    let sunsetDate = new Date((sunset + timezone) * 1000);
+    //converting the UNIX time into normal time as per the local timezone of the location
+    let finalSunrise = sunriseDate.toLocaleTimeString("en-US", {
+      hour: "2-digit",
+      minute: "2-digit",
+      timeZone: "UTC",
+    });
+
+    let finalSunset = sunsetDate.toLocaleTimeString("en-US", {
+      hour: "2-digit",
+      minute: "2-digit",
+      timeZone: "UTC",
+    });
 
     if (data.error) {
       document.querySelector(".error").innerHTML = data.error;
       document.querySelector(".error").style.display = "block";
-      document.querySelector(".weather").style.display = "none";
+      document.querySelector(".conatainer").style.display = "none";
     } else {
       document.querySelector(".desc").innerHTML = data.weather[0].description;
       document.querySelector(".city").innerHTML = data.name;
       document.querySelector(".temp").innerHTML =
         Math.round(data.main.temp) + "°C";
+      document.querySelector(".feelslike").innerHTML =
+        Math.round(data.main.feels_like) + "°C";
       document.querySelector(".humidity").innerHTML = data.main.humidity + "%";
       document.querySelector(".wind").innerHTML = data.wind.speed + "km/h";
+      document.querySelector(".sunrise").innerHTML = finalSunrise;
+      document.querySelector(".sunset").innerHTML = finalSunset;
 
       // Update weather icon based on weather conditions
       if (data.weather[0].main == "Mist") {
@@ -42,7 +66,7 @@ async function checkWeather(city) {
       }
 
       document.querySelector(".error").style.display = "none";
-      document.querySelector(".weather").style.display = "block";
+      document.querySelector(".container").style.display = "flex";
     }
     console.log(data);
   }
